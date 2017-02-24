@@ -69,7 +69,6 @@ public class CryptoObjectHelper {
         if (!_keystore.isKeyEntry(KEY_NAME)) {
             CreateKey();
         }
-
         secretKey = _keystore.getKey(KEY_NAME, null);
         return secretKey;
     }
