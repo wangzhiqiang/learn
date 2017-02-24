@@ -1,5 +1,6 @@
 package wangzq.cn;
 
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.math.BigInteger;
+import java.security.PrivateKey;
 import java.security.Signature;
+import java.security.interfaces.RSAPrivateKey;
 
 public class FingerprintActivity extends AppCompatActivity {
 
@@ -19,6 +23,8 @@ public class FingerprintActivity extends AppCompatActivity {
     FingerprintManagerCompat mFingerManager;
     FingerprintManagerCompat.CryptoObject mCryptoObject;
 
+    PrivateKey mPrivateKey ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +34,46 @@ public class FingerprintActivity extends AppCompatActivity {
         mFingerManager = FingerprintManagerCompat.from(this);
 
         try {
-            mCryptoObject = new FingerprintManagerCompat.CryptoObject(Signature.getInstance("DSA"));
+
+
+            mCryptoObject =new CryptoObjectHelper().buildCryptoObject();
+
+
+            mPrivateKey = new RSAPrivateKey() {
+                @Override
+                public BigInteger getPrivateExponent() {
+                    return null;
+                }
+
+                @Override
+                public String getAlgorithm() {
+                    return null;
+                }
+
+                @Override
+                public String getFormat() {
+                    return null;
+                }
+
+                @Override
+                public byte[] getEncoded() {
+                    return new byte[0];
+                }
+
+                @Override
+                public BigInteger getModulus() {
+                    return null;
+                }
+            };
+
+            Signature signature = Signature.getInstance("RSA");
+            signature.initSign(mPrivateKey);
+
+
+            mCryptoObject = new FingerprintManagerCompat.CryptoObject(signature);
+
+
+
         } catch (Exception e) {
             Log.w(TAG, e.getMessage(), e);
         }
@@ -67,8 +112,8 @@ public class FingerprintActivity extends AppCompatActivity {
 
         @Override
         public void onAuthenticationSucceeded(FingerprintManagerCompat.AuthenticationResult result) {
-            Log.i(TAG, "指纹识别成功:" + result.getCryptoObject());
             //TODO 校验
+
             Toast.makeText(getBaseContext(), "指纹识别成功", Toast.LENGTH_SHORT).show();
         }
 
