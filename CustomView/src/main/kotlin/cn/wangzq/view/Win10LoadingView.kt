@@ -1,12 +1,14 @@
 package cn.wangzq.view
 
 import android.animation.ValueAnimator
+import android.app.ActionBar
 import android.content.Context
 import android.graphics.*
 import android.os.Build
 import android.support.annotation.ColorInt
 import android.support.annotation.Nullable
 import android.support.annotation.RequiresApi
+import android.text.Layout
 import android.util.AttributeSet
 import android.view.View
 
@@ -79,10 +81,7 @@ class Win10LoadingView : View {
 
     //保障view的宽高一样
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        var spec: Int = widthMeasureSpec
-        if (compareValues(widthMeasureSpec, heightMeasureSpec) < 0) {
-            spec = heightMeasureSpec
-        }
+        var spec = Math.max(widthMeasureSpec, heightMeasureSpec)
         super.onMeasure(spec, spec)
     }
 
@@ -135,7 +134,7 @@ class Win10LoadingView : View {
 
         for (index in 0..mPointCount - 1) {
 
-            x =  t - index * 0.05f * (1f - t)
+            x = t - index * 0.05f * (1f - t)
             s = mPathMeasure.length
             y = -s * x * x + 2 * s * x
             mPathMeasure.getSegment(y, y + 1, dst, true)
