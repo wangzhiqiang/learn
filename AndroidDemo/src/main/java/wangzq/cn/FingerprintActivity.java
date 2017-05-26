@@ -3,6 +3,7 @@ package wangzq.cn;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
+import android.support.v4.os.CancellationSignal;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -39,38 +40,38 @@ public class FingerprintActivity extends AppCompatActivity {
             mCryptoObject =new CryptoObjectHelper().buildCryptoObject();
 
 
-            mPrivateKey = new RSAPrivateKey() {
-                @Override
-                public BigInteger getPrivateExponent() {
-                    return null;
-                }
+//            mPrivateKey = new RSAPrivateKey() {
+//                @Override
+//                public BigInteger getPrivateExponent() {
+//                    return null;
+//                }
+//
+//                @Override
+//                public String getAlgorithm() {
+//                    return null;
+//                }
+//
+//                @Override
+//                public String getFormat() {
+//                    return null;
+//                }
+//
+//                @Override
+//                public byte[] getEncoded() {
+//                    return new byte[0];
+//                }
+//
+//                @Override
+//                public BigInteger getModulus() {
+//                    return null;
+//                }
+//            };
 
-                @Override
-                public String getAlgorithm() {
-                    return null;
-                }
-
-                @Override
-                public String getFormat() {
-                    return null;
-                }
-
-                @Override
-                public byte[] getEncoded() {
-                    return new byte[0];
-                }
-
-                @Override
-                public BigInteger getModulus() {
-                    return null;
-                }
-            };
-
-            Signature signature = Signature.getInstance("RSA");
-            signature.initSign(mPrivateKey);
+//            Signature signature = Signature.getInstance("RSA");
+//            signature.initSign(mPrivateKey);
 
 
-            mCryptoObject = new FingerprintManagerCompat.CryptoObject(signature);
+//            mCryptoObject = new FingerprintManagerCompat.CryptoObject(signature);
 
 
 
@@ -99,6 +100,7 @@ public class FingerprintActivity extends AppCompatActivity {
             mFingerManager.authenticate(mCryptoObject, 0, null, new FingerprintsAuthenticationCallback(), null);
         }
     }
+
 
     class FingerprintsAuthenticationCallback extends FingerprintManagerCompat.AuthenticationCallback {
         @Override

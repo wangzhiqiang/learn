@@ -1,1 +1,1 @@
-include ':AndroidDemo'
+include ':AndroidDemo', ':CustomView'

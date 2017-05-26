@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="win10">
+
+
+        <attr format="color" name="color"/>
+        <attr format="integer" name="count"/>
+        <attr format="dimension" name="size"/>
+        <attr format="float" name="rotate"/>
+        <attr format="float" name="duration"/>
+        <attr format="enum" name="direction">
+            <enum name="CW" value="0"/>
+            <enum name="CCW" value="1"/>
+        </attr>
+
+    </declare-styleable>
+</resources>
