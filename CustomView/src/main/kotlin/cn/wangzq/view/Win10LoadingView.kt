@@ -1,16 +1,15 @@
 package cn.wangzq.view
 
 import android.animation.ValueAnimator
-import android.app.ActionBar
 import android.content.Context
 import android.graphics.*
 import android.os.Build
 import android.support.annotation.ColorInt
 import android.support.annotation.Nullable
 import android.support.annotation.RequiresApi
-import android.text.Layout
 import android.util.AttributeSet
 import android.view.View
+import android.util.TypedValue
 
 
 /**
@@ -47,9 +46,11 @@ class Win10LoadingView : View {
 
     constructor(context: Context, @Nullable attrs: AttributeSet) : super(context, attrs) {
 
+        val value = TypedValue()
+        context.theme.resolveAttribute(R.attr.colorPrimary, value, true)
+        mPointColor =  value.data
 
         val a = context.obtainStyledAttributes(attrs, R.styleable.win10)
-
 
         mPointCount = a.getInt(R.styleable.win10_count, mPointCount)
 
