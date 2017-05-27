@@ -9,10 +9,10 @@
     tools:context="cn.wangzq.view.MainActivity">
 
 
-    <cn.wangzq.view.CircleLoading
+    <cn.wangzq.view.MagicCircleView
         android:background="#E2E2E2"
-        android:padding="5dp"
+        android:padding="10dp"
         android:layout_gravity="center"
-        android:layout_width="100dp"
-        android:layout_height="100dp"/>
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
 </FrameLayout>
