@@ -1,33 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFF"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="cn.wangzq.view.MainActivity">
 
 
-    <!--<cn.wangzq.view.ClockView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"/>-->
-    
-    <cn.wangzq.view.Win10LoadingView
-        app:color="#F00"
-        app:count="5"
-        app:size="5dp"
-        app:duration="3000"
-        app:rotate="-90"
-        app:direction="CW"
-
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"/>
-</android.support.constraint.ConstraintLayout>
+    <cn.wangzq.view.CircleLoading
+        android:background="#E2E2E2"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+</FrameLayout>

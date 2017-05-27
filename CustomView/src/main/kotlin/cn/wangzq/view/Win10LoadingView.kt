@@ -114,8 +114,6 @@ class Win10LoadingView : View {
 
         dst.rewind()
 
-        //TODO 移动位置,不用每次计算
-
         var centerX: Float = (width / 2).toFloat()
         var centerY: Float = (height / 2).toFloat()
         var diameter: Float = (width - paddingLeft - paddingRight - mPointSize) / 2
