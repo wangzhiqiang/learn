@@ -72,29 +72,21 @@ class CircleLoading : View {
         //r^2=x^2+y^2
 
         mPaint.strokeWidth = 1f
-        mPaint.color=Color.BLUE
+        mPaint.color = Color.BLUE
 
-        canvas.drawCircle(0f,0f,r,mPaint)
+        canvas.drawCircle(0f, 0f, r, mPaint)
 
         mPaint.strokeWidth = 10f
-        mPaint.color=Color.RED
+        mPaint.color = Color.RED
 
         var t = mValueAnimator.animatedValue as Float
         var x = t * r
-//        for (i in 0..5 - 1) {
 
-//            if (t < 0) {
-//                x += Math.abs(t + 0.05f * i) * r
-//            } else {
-//                x -= (t - 0.05f * i) * r
-//            }
+        var y = Math.sqrt((r * r - x * x).toDouble()).toFloat()
 
-            var y = Math.sqrt((r * r - x * x).toDouble()).toFloat()
+        canvas.drawPoint(x, y, mPaint)
+        canvas.drawPoint(x, -y, mPaint)
 
-            canvas.drawPoint(x, y, mPaint)
-            canvas.drawPoint(x, -y, mPaint)
-
-//        }
 
 
         super.onDraw(canvas)
