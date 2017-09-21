@@ -40,7 +40,7 @@ class SolarSystemView : View {
         mPaint.textSize = 20f
         mPaint.isAntiAlias = true
 
-        if(android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+        if (android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
             setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         }
 
@@ -64,6 +64,7 @@ class SolarSystemView : View {
 
 
     var posArray = floatArrayOf(88f, 225f, 365f, 687f, 4333f, 10760f, 30799f, 60192f)
+    var strArray = arrayOf("水星", "金星", "地球", "火星", "木星", "土星", "天王星", "海王星")
 
     var startTime = System.currentTimeMillis()
 
@@ -84,6 +85,8 @@ class SolarSystemView : View {
             //绘制行星轨道
             mPaint.color = Color.GRAY
             mPaint.strokeWidth = 1.0f
+            mPaint.style = Paint.Style.STROKE
+
             var realradius = radius / 2f * (i / 8f) - (padding)
             canvas.drawCircle(0f, 0f, realradius, mPaint)
 
@@ -102,23 +105,30 @@ class SolarSystemView : View {
 
             var difftime = System.currentTimeMillis() - startTime
 
-            // 3000 毫秒一圈 地球
             //(转动速度)( 周长/周期 )* 时间 = 转动长度
-            var len = perimeter / posArray[i - 1] * difftime/10f  + posArray[i-1]
+            var len = perimeter / posArray[i - 1] * difftime / 16f + posArray[i - 1]
 
             len %= perimeter
             //旋转方向
-            len = perimeter-len
-            mPathMeasure.getSegment(len-1, len , pointDst, true)
-            canvas.drawPath(pointDst, mPaint)
+            len = perimeter - len
+//            mPathMeasure.getSegment(len - 1, len, pointDst, true)
+//            canvas.drawPath(pointDst, mPaint)
 
+            val point = FloatArray(2)
+            mPathMeasure.getPosTan(len, point, null)
+            canvas.drawPoint(point[0], point[1], mPaint)
+//            mPaint.strokeWidth=1f
+//            mPaint.style=Paint.Style.FILL
+//            mPaint.textSize=25f
+//            mPathMeasure.getSegment(len-(mPaint.textSize*strArray[i-1].length) , len , pointDst, true)
+//            canvas.drawTextOnPath(strArray[i-1],pointDst,0f,0f,mPaint)
 
 
         }
 
 
-        postInvalidate()
-//        postInvalidateDelayed(10)
+//        postInvalidate()
+        postInvalidateDelayed(16)
 
         super.onDraw(canvas)
     }
